@@ -39,7 +39,9 @@ jobs:
       - name: Upload artifact
         # https://github.com/actions/upload-artifact
         # upload-artifact@v4+ is not currently supported on GHES yet. If you are on GHES, you must use v3.
+        # Artifacts are retained for 90 days by default. You can specify a shorter retention period using the retention-days input
         uses: actions/upload-artifact@v4
         with:
-          name: revolver.zip
-          path: .
+          name: revolver-${{ env.GITHUB_SHA }}.zip
+          path: dist
+          overwrite: true
